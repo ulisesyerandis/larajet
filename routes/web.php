@@ -18,7 +18,8 @@ use Illuminate\Support\Facades\Route;
 //     return view('Welcome');
 // });
 
-Route::get('/', 'App\Http\Controllers\InicioController@index' );
+// Route::get('/', 'App\Http\Controllers\InicioController@index' );
+Route::resource('/','App\Http\Controllers\WorkerController');
 
 Route::middleware([
     'auth:sanctum',
