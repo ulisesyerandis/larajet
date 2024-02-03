@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('worker', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            //      create link with user table by id
+            $table->unsignedBigInteger('users_id');
+            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

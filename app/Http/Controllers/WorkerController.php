@@ -12,8 +12,9 @@ class WorkerController extends Controller
      */
     public function index()
     {
-      $workerList = worker::all();
-      echo $workerList;
+      $workerList = worker::all(); 
+        return view('worker.index')->with('worker', $workerList);
+    //   return \response()->json($this->studentService->index($request));
     }
 
     /**
@@ -21,7 +22,8 @@ class WorkerController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view('worker.create');
     }
 
     /**
@@ -29,7 +31,11 @@ class WorkerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $worker = new Worker();
+        $worker->name = $request->input('name');
+        $worker->save();
+        return redirect('/worker');
+        // return response()->json($worker);
     }
 
     /**
@@ -37,23 +43,36 @@ class WorkerController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // $worker = Worker::find($id);
+        // if(!$worker)
+        // {
+        //     return response()->json(['message'=>'Could not find worker'],404);
+        // }
+        // return $worker;
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
-    }
+    public function edit($id)
+{
+    $worker = Worker::find($id);
+    return view('worker.edit')->with('worker', $worker);
+}
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+        $worker = Worker::find($id);
+        if(!$worker)
+        {
+            return response()->json(['message'=>'Could not find worker'],404);
+        }
+        $worker->name = $request->input('name');
+        $worker->save();
+        return redirect('/worker');
     }
 
     /**
@@ -61,6 +80,13 @@ class WorkerController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $worker = Worker::find($id);
+        if(!$worker)
+        {
+            return response()->json(['message'=>'Could not find worker'],404);
+        }
+        $deletedWorker = $worker;
+        $worker->delete();
+        return redirect('/worker');
     }
 }

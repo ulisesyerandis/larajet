@@ -13,13 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function()
-// {
-//     return view('Welcome');
-// });
+Route::get('/', function()
+{
+    return view('Welcome');
+});
 
 // Route::get('/', 'App\Http\Controllers\InicioController@index' );
-Route::resource('/','App\Http\Controllers\WorkerController');
+Route::resource('worker','App\Http\Controllers\WorkerController');
+Route::resource('worker/edit','App\Http\Controllers\WorkerController');
+
+//          route to worker CRUD controller
+// $router->get('/worker', 'App\Http\Controllers\WorkerController@index');
+// $router->post('/worker', 'App\Http\Controllers\WorkerController@store');
+// $router->get('/worker/{id}', 'App\Http\Controllers\WorkerController@show');
+// $router->put('/worker/{id}', 'App\Http\Controllers\WorkerController@update');
+// $router->delete('/worker/{id}', 'App\Http\Controllers\WorkerController@destroy');
 
 Route::middleware([
     'auth:sanctum',
