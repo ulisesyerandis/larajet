@@ -38,5 +38,4 @@
         <a href="/worker" class="btn btn-secondary" tabindex="5"> Cancel</a>
 </form>
     
-
 @endsection
